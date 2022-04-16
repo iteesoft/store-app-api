@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public AppUser update(Long userId, UserDto user) {
-        AppUser oldUser = userRepo.findById(userId).orElseThrow(()-> new NotFoundException("User doesn't exist"));
+        AppUser oldUser = userRepo.findById(userId).orElseThrow(()-> new NotFoundException("User doesn't exist", "check the id and try again"));
         oldUser.setName(user.getName());
         oldUser.setEmail(user.getEmail());
         oldUser.setRole(Role.valueOf(user.getRole()));

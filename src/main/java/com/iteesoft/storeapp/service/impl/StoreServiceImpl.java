@@ -22,7 +22,7 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public Store save(StoreDto store, Long userId) {
-        AppUser storeOwner = userRepo.findById(userId).orElseThrow(()-> new NotFoundException("User doesn't exist"));
+        AppUser storeOwner = userRepo.findById(userId).orElseThrow(()-> new NotFoundException("User doesn't exist", "check the id and try again"));
 
         Store newStore = Store.builder().name(store.getStoreName())
                 .storeOwner(storeOwner).address(store.getAddress())
@@ -33,7 +33,7 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public Store update(StoreDto store, Long storeId) {
-        Store oldStore = storeRepo.findById(storeId).orElseThrow(()-> new NotFoundException("Store doesn't exist"));;
+        Store oldStore = storeRepo.findById(storeId).orElseThrow(()-> new NotFoundException("Store doesn't exist", "check the id and try again"));;
         oldStore.setName(store.getStoreName());
         oldStore.setAddress(store.getAddress());
         oldStore.setLogoUrl(store.getLogoUrl());
@@ -44,7 +44,7 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public String getStoreBalance(Long storeId) {
-        Store store = storeRepo.findById(storeId).orElseThrow(()-> new NotFoundException("Store doesn't exist"));;
+        Store store = storeRepo.findById(storeId).orElseThrow(()-> new NotFoundException("Store doesn't exist", "check the id and try again"));;
         Wallet storeWallet = store.getStoreOwner().getWallet();
         return "$" + storeWallet.getBalance().toString();
     }
