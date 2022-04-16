@@ -105,6 +105,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>store-app-image</finalName>
     </build>
 
 </project>
