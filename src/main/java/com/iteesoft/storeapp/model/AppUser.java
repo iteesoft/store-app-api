@@ -19,6 +19,7 @@ public class AppUser extends Base{
     private String name;
     private String email;
     private String password;
+    private String phoneNumber;
 
     @OneToOne
     private Wallet wallet;

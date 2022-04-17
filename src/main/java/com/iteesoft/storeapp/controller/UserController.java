@@ -6,6 +6,8 @@ import com.iteesoft.storeapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -19,7 +21,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/new")
-    public ResponseEntity<AppUser> register(@RequestBody UserDto user) {
+    public ResponseEntity<AppUser> register(@RequestBody @Valid UserDto user) {
         return new ResponseEntity<>(userService.save(user), CREATED);
     }
 

@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -32,7 +31,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public AppUser save(UserDto user) {
         AppUser newUser = AppUser.builder()
-                .email(user.getEmail()).name(user.getName())
+                .email(user.getEmail()).name(user.getName()).phoneNumber(user.getPhoneNumber())
                 .password(user.getPassword()).role(Role.valueOf(user.getRole())).build();
 
         return userRepo.save(newUser);
