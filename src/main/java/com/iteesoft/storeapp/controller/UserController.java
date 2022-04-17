@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
@@ -24,5 +26,10 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<AppUser> update(@PathVariable("id") Long id, @RequestBody UserDto user) {
         return new ResponseEntity<>(userService.update(id, user), OK);
+    }
+
+    @GetMapping
+    public CompletableFuture<ResponseEntity<?>> getAllUsers() {
+        return userService.findAllUsers().thenApply(ResponseEntity::ok);
     }
 }

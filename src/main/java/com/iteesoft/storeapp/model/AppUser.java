@@ -1,5 +1,6 @@
 package com.iteesoft.storeapp.model;
 
+import com.iteesoft.storeapp.enums.Gender;
 import com.iteesoft.storeapp.enums.Role;
 import lombok.*;
 
@@ -24,4 +25,7 @@ public class AppUser extends Base{
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 }

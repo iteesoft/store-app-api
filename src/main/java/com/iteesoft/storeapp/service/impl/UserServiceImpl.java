@@ -9,9 +9,14 @@ import com.iteesoft.storeapp.repository.StoreRepo;
 import com.iteesoft.storeapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 
 @Slf4j
@@ -21,6 +26,7 @@ public class UserServiceImpl implements UserService {
 
     private final AppUserRepository userRepo;
     private final StoreRepo storeRepo;
+    Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
 
     @Override
@@ -40,6 +46,14 @@ public class UserServiceImpl implements UserService {
         oldUser.setRole(Role.valueOf(user.getRole()));
         oldUser.setUpdatedAt(LocalDateTime.now());
         return userRepo.save(oldUser);
+    }
+
+    @Async
+    @Override
+    public CompletableFuture<List<AppUser>> findAllUsers() {
+        logger.info("getting the list of all users by "+ Thread.currentThread().getName());
+        List<AppUser> users = userRepo.findAll();
+        return CompletableFuture.completedFuture(users);
     }
 
 
