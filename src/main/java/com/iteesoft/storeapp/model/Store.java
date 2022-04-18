@@ -19,8 +19,10 @@ public class Store extends Base{
     private String logoUrl;
     @OneToOne
     private AppUser storeOwner;
-    @OneToMany(mappedBy = "store")
+
+    @OneToMany
     private List<AppUser> staffList;
-    @OneToMany(mappedBy = "store")
+
+    @OneToMany
     private List<Product> products;
 }

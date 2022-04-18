@@ -1,14 +1,23 @@
 package com.iteesoft.storeapp.payload;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
+import java.util.Map;
+
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonInclude(NON_NULL)
 public class ApiValidationError extends ApiSubError {
+
+    private Map<?,?> errors;
     private String object;
-    private String field;
-    private Object rejectedValue;
     private String message;
 
     ApiValidationError(String object, String message) {
