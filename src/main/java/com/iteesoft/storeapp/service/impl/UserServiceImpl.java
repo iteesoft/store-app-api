@@ -60,11 +60,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public AppUser update(Long userId, UserDto user) {
+    public AppUser update(UserDto user) {
         UserDetails loggedInUser = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        logger.info("updating user {} ", user.getName());
+        String username = loggedInUser.getUsername();
+        logger.info("updating user {} ", username);
 
-        AppUser oldUser = userRepo.findById(userId).orElseThrow(()-> new NotFoundException("User doesn't exist", "check the id and try again"));
+        AppUser oldUser = userRepo.findByUsername(username).orElseThrow(()-> new NotFoundException("User doesn't exist", "check the id and try again"));
         oldUser.setName(user.getName());
         oldUser.setUsername(user.getEmail());
         oldUser.getRoles().add(Role.valueOf(user.getRole()));

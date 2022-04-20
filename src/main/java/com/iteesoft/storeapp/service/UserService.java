@@ -10,7 +10,7 @@ import java.util.concurrent.CompletableFuture;
 public interface UserService {
 
     AppUser save(UserDto user);
-    AppUser update(Long userId, UserDto user);
+    AppUser update(UserDto user);
     void addRoleToUser(String userName, String role);
     AppUser getUser(String userName);
     CompletableFuture<List<AppUser>> findAllUsers();

@@ -27,9 +27,9 @@ public class UserController {
         return ResponseEntity.created(uri).body(savedUser);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<AppUser> update(@PathVariable("id") Long id, @RequestBody @Valid UserDto user) {
-        return new ResponseEntity<>(userService.update(id, user), OK);
+    @PutMapping("/update")
+    public ResponseEntity<AppUser> update(@RequestBody @Valid UserDto user) {
+        return new ResponseEntity<>(userService.update(user), OK);
     }
 
     @GetMapping
