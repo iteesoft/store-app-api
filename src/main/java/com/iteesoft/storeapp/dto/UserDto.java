@@ -16,8 +16,11 @@ public class UserDto {
     private String email;
 
     @NotNull
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message = "password should be at least 8 characters and contain at least one digit, one uppercase letter, one lowercase letter, one special character and no whitespace")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$",
+            message = "password should be at least 8 characters and contain at least one digit, one uppercase letter, one lowercase letter, one special character and no whitespace")
     private String password;
+
+    private String gender;
 
     @NotNull
     @Pattern(regexp = "^\\d{10}$", message = "phone number should be 10 digits")

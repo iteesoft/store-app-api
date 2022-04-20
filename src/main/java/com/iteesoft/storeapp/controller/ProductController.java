@@ -16,7 +16,7 @@ import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/products")
+@RequestMapping("/products")
 public class ProductController {
 
     private final ProductService productService;
@@ -44,6 +44,12 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<?> viewAllProducts() {
         return new ResponseEntity<>(productService.viewAllProducts(), OK);
+    }
+
+    @GetMapping("/{pageNo}/{pageSize}")
+    public ResponseEntity<?> viewPaginatedProducts(@PathVariable int pageNo,
+                                                   @PathVariable int pageSize) {
+        return new ResponseEntity<>(productService.viewAllProductsPaginated(pageNo, pageSize), OK);
     }
 
     @DeleteMapping("/{id}")

@@ -13,6 +13,9 @@ import com.iteesoft.storeapp.service.UtilService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
 import javax.transaction.Transactional;
@@ -83,6 +86,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> viewAllProducts() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public List<Product> viewAllProductsPaginated(int pageNo, int pageSize) {
+        Pageable paging = PageRequest.of(pageNo, pageSize);
+        Page<Product> pageResult = productRepository.findAll(paging);
+        return pageResult.getContent();
     }
 
 

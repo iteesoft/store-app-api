@@ -12,5 +12,6 @@ public interface ProductService {
     void delete(Long id) throws NotFoundException;
     Product viewProduct(Long id);
     List<Product> viewAllProducts();
+    List<Product> viewAllProductsPaginated(int pageNo, int pageSize);
     Category addProductToCategory(Long productId, Long categoryId);
 }

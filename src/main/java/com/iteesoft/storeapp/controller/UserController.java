@@ -6,27 +6,29 @@ import com.iteesoft.storeapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
-import java.util.List;
+import java.net.URI;
 import java.util.concurrent.CompletableFuture;
-
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/users")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/new")
+    @PostMapping("/register")
     public ResponseEntity<AppUser> register(@RequestBody @Valid UserDto user) {
-        return new ResponseEntity<>(userService.save(user), CREATED);
+        var savedUser = userService.save(user);
+        URI uri = URI.create(String.format("/api/v1/users/%s",savedUser.getId()));
+//        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(savedUser);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AppUser> update(@PathVariable("id") Long id, @RequestBody UserDto user) {
+    public ResponseEntity<AppUser> update(@PathVariable("id") Long id, @RequestBody @Valid UserDto user) {
         return new ResponseEntity<>(userService.update(id, user), OK);
     }
 
