@@ -12,7 +12,7 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/stores")
+@RequestMapping("/stores")
 public class StoreController {
 
     private final StoreService storeService;

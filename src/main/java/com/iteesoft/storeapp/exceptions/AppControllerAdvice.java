@@ -19,6 +19,13 @@ public class AppControllerAdvice {
                 .errors(Map.of("error", appException.getMessage())).build(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(AlreadyExistException.class)
+    public ResponseEntity<ApiValidationError> handleNotFound(AlreadyExistException appException) {
+
+        return new ResponseEntity<>(ApiValidationError.builder()
+                .errors(Map.of("error", appException.getMessage())).build(), HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiValidationError> handleInvalidArgument(MethodArgumentNotValidException ex) {
         var errors = new HashMap<>();

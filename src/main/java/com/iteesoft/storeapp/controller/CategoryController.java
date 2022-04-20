@@ -13,7 +13,7 @@ import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/categories")
+@RequestMapping("/categories")
 public class CategoryController {
 
     private CategoryService categoryService;

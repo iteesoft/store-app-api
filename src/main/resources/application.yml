@@ -1,3 +1,8 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
 spring:
   h2:
     console:
@@ -7,3 +12,5 @@ spring:
     username: sa
     password:
     driverClassName: org.h2.Driver
+  jpa:
+    show-sql: true
