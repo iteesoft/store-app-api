@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.iteesoft.storeapp.StoreApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 7.86 s <<< FAILURE! - in com.iteesoft.storeapp.StoreApplicationTests
+contextLoads  Time elapsed: 0.003 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: com.iteesoft.storeapp.model.Product.store in com.iteesoft.storeapp.model.Store.products
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: com.iteesoft.storeapp.model.Product.store in com.iteesoft.storeapp.model.Store.products
+
